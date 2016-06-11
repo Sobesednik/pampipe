@@ -1,9 +1,6 @@
 const pamflip = require('../lib/pamflip');
 const chai = require('chai');
 const expect = chai.expect;
-const resemble = require('node-resemble-js');
-const path = require('path');
-const fs = require('fs');
 
 const transforms = [
     'leftright',
