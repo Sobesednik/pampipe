@@ -1,0 +1,29 @@
+{
+  "name": "pampipe",
+  "version": "1.0.0",
+  "description": "A package which allows to pipe netpbm programs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sobesednik/pampipe.git"
+  },
+  "keywords": [
+    "netpbm",
+    "pam",
+    "pbm",
+    "graphics",
+    "jpeg"
+  ],
+  "author": "Anton @ Sobesednik.Media",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sobesednik/pampipe/issues"
+  },
+  "homepage": "https://github.com/Sobesednik/pampipe#readme",
+  "devDependencies": {
+    "mocha": "^2.5.3"
+  }
+}
