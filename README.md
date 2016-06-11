@@ -15,7 +15,7 @@ const command = pampipe
 console.log(command);
 // jpegtopnm image.jpg | pamflip -r180 | pnmtojpeg
 
-pampipe
+new Pampipe()
   .jpegtopnm('image.jpg')
   .pamflip('r180')
   .pnmtojpeg().
