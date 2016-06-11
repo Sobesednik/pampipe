@@ -19,9 +19,9 @@ pampipe
   .jpegtopnm('image.jpg')
   .pamflip('r180')
   .pnmtojpeg().
-  .execute()
+  .save('filename.jpg')
   .then((data) => {
-    // result from stdout
+      console.log(data); // filename.jpg
   });
 ```
 
