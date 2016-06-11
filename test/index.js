@@ -12,7 +12,7 @@ const rimraf = require('rimraf');
 
 const testJPG = path.join(__dirname, 'fixtures/original.jpg');
 
-describe.only('pampipe', function () {
+describe('pampipe', function () {
     let tmpDir = path.join(os.tmpdir(), `pampipe${Date.now()}`);
     before(function () {
         return new Promise((resolve, reject) => {

@@ -29,7 +29,7 @@ pampipe
 Reads a jpeg file and converts it into a pnm image.
 
 Options:
-- **dct** [int, fast, float]: which DCT method to use
+- **dct** [int, fast, float, default int]: which DCT method to use
 - **nosmooth** Boolean: faster, lower-quality unsampling route
 - **maxmemory** int|String: how much memory to use, e.g., 2500000 or '4mb'
 - **adobe** Boolean: true to add -adobe arg and false to add -notadobe arg
@@ -58,6 +58,54 @@ pampipe
 ```
 
 [http://netpbm.sourceforge.net/doc/jpegtopnm.html](http://netpbm.sourceforge.net/doc/jpegtopnm.html)
+
+### pnmtojpeg
+Converts a pnm image to a JPEG.
+
+Options:
+- **exif** String: add exif data from specified file
+- **quality** int (0 to 100, default 75): adjust image quality
+- **grayscale|greyscale** Boolean: produce a grayscale image
+- **rgb** Boolean: use RGB colour space instead of YCbCr
+- **density** String (nxn[dpi,dpcm]): resolution information, e.g., 1x1, 3x2, 300x300dpi, 100x200dpcm
+- **optimise|optimize** Boolean: perform entropy optimisation
+- **progressive** Boolean: create a progressive JPEG
+- **comment** String: add a comment marker
+- **dct** [int, fast, float, default int]: which DCT method to use
+- **arithmetic** String: use arithmetic coding instead of Huffman encoding
+- **restart** int: emit a JPEG restart marker every _n_ MCU rows
+- **smooth** int (0 to 100, default 0): eliminate dithering noise
+- **maxmemory** int|String: how much memory to use, e.g., 2500000 or '4mb'
+- **verbose** Boolean: print details to _stderr_
+- **baseline** Boolean: force baseline-compatible quantization tables
+- **qtables** String: use quantisation tables from specified file
+- **qslots** String (n[,...]): which quantisation table to use for each colour component
+- **sample** String (HxV[,...]): samplint factors for each colour component
+- **scans** String: use scan script from specified file
+- **tracelevel** int: debug level, higher level will print more info
+
+Usage:
+
+```javascript
+const pampipe = new Pampipe();
+pampipe
+  .jpegtopnm('image.jpg', {
+      exif: 'data.exif',
+  })
+  .pamflip('r180')
+  .pnmtojpeg({
+      exif: 'data.exif', // copy exif from original
+      quality: 80,
+      progressive: true,
+      dct: 'fast',
+      qtables: 'qtables.txt',
+  })
+  .getCommand();
+// jpegtopnm -exif=data.exif image.jpg | pamflip -r180 | \
+// pnmtojpeg -exif=data.exif -quality=80 -progressive -dct=fast -qtables=qtables.txt
+```
+
+[http://netpbm.sourceforge.net/doc/pnmtojpeg.html](http://netpbm.sourceforge.net/doc/pnmtojpeg.html)
 
 ### pamflip
 Allows to transform an image, e.g., rotate, flip, transpose, _etc_.
