@@ -2,7 +2,7 @@ const pnmtojpeg = require('../lib/pnmtojpeg');
 const chai = require('chai');
 const expect = chai.expect;
 
-describe.only('pnmtojpeg', function () {
+describe('pnmtojpeg', function () {
     it('creates a command without filename arg', function () {
         const res = pnmtojpeg();
         expect(res).to.equal('pnmtojpeg');

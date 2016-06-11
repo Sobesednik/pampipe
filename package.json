@@ -14,6 +14,7 @@
     "netpbm",
     "pam",
     "pbm",
+    "pnm",
     "graphics",
     "jpeg"
   ],
