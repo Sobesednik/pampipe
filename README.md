@@ -141,3 +141,59 @@ pampipe
 ```
 
 [http://netpbm.sourceforge.net/doc/pamflip.html](http://netpbm.sourceforge.net/doc/pamflip.html)
+
+### pamscale
+Scales a pam image by a specific factor, or each dimension individually.
+
+Options:
+- **xyfit** Array|int: scale to fit bounding box. Pass an array to specify width and height,
+or pass an integer when dimensions are equal, e.g., *[480, 640]* or *250*.
+- **xyfill** Array|int: scale to smallest size to complitelly fill the box.
+- **reduce** float: how much to scale image
+- **xsize** int: new width
+- **ysize** int: new height
+- **width** int: synonym for xsize
+- **height** int: synonym for ysize
+- **xscale** float: how much to scale x dimenstion
+- **yscale** float: how much to scale y dimenstion
+- **pixels** int: maximum number of pixels
+- **verbose** Boolean: print debug information
+- **nomix** Boolean: use discrete sampling
+- **filter**: which filter function to use (see below)
+- **window**: window filter function to use with filter
+- **linear**: skip conversion between these gamma-adjusted numbers and internal intensity-proportional numbers
+
+Filter functions:
+- point
+- box
+- triangle
+- quadratic
+- cubic
+- catrom
+- mitchell
+- gauss
+- sinc
+- bessel
+- hanning
+- hamming
+- blackman
+- kaiser
+- normal
+- hermite
+- lanczos
+
+Usage:
+```javascript
+const pampipe = new Pampipe();
+pampipe
+  .jpegtopnm('image.jpg')
+  .pamscale({
+      xyfit: 500,
+      filter: 'gauss',
+      linear: true,
+  })
+  .getCommand();
+// jpegtopnm image.jpg | pamscale -xyfit=500 -filter=gauss -linear
+```
+
+[http://netpbm.sourceforge.net/doc/pamscale.html](http://netpbm.sourceforge.net/doc/pamscale.html)

@@ -17,7 +17,7 @@ const rotate270Path = path.join(__dirname, 'fixtures/rotate270.png');
 function readFile(file) {
     return new Promise((resolve, reject) => {
         fs.readFile(file, (err, data) => {
-            if(err) {
+            if (err) {
                 return reject(err);
             }
             return resolve(data);

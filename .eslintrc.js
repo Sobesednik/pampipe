@@ -28,6 +28,9 @@ module.exports = {
         "comma-dangle": [
             "error",
             "always-multiline"
+        ],
+        "keyword-spacing": [
+            "error"
         ]
     }
 };
