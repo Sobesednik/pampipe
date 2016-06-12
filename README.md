@@ -1,5 +1,10 @@
 # pampipe
-A Node.js module to enable chaining of netpbm programs.
+A Node.js module to enable chaining of *netpbm* programs.
+
+*Netpbm* is a collection of modules to work with graphic images. For example,
+you can resize, rotate and convert between formats. This module allows to generate
+commands to be executed in bash. It does not include binaries or bindings, and
+you need to have *netpbm* installed on your machine to perform actual manipulations.
 
 ## Usage
 ```javascript
@@ -9,16 +14,18 @@ const pampipe = new Pampipe();
 const command = pampipe
   .jpegtopnm('image.jpg')
   .pamflip('r180')
-  .pnmtojpeg().
+  .pnmtojpeg()
   .getCommand();
 
 console.log(command);
 // jpegtopnm image.jpg | pamflip -r180 | pnmtojpeg
 
+// save command appends >filename.jpg to the end of the pipe and asynchronously executes it,
+// returning a promise fulfilled with the filename.
 new Pampipe()
   .jpegtopnm('image.jpg')
   .pamflip('r180')
-  .pnmtojpeg().
+  .pnmtojpeg()
   .save('filename.jpg')
   .then((data) => {
       console.log(data); // filename.jpg
@@ -77,10 +84,10 @@ Options:
 - **smooth** int (0 to 100, default 0): eliminate dithering noise
 - **maxmemory** int|String: how much memory to use, e.g., 2500000 or '4mb'
 - **verbose** Boolean: print details to _stderr_
-- **baseline** Boolean: force baseline-compatible quantization tables
+- **baseline** Boolean: force baseline-compatible quantisation tables
 - **qtables** String: use quantisation tables from specified file
 - **qslots** String (n[,...]): which quantisation table to use for each colour component
-- **sample** String (HxV[,...]): samplint factors for each colour component
+- **sample** String (HxV[,...]): sampling factors for each colour component
 - **scans** String: use scan script from specified file
 - **tracelevel** int: debug level, higher level will print more info
 
@@ -148,14 +155,14 @@ Scales a pam image by a specific factor, or each dimension individually.
 Options:
 - **xyfit** Array|int: scale to fit bounding box. Pass an array to specify width and height,
 or pass an integer when dimensions are equal, e.g., *[480, 640]* or *250*.
-- **xyfill** Array|int: scale to smallest size to complitelly fill the box.
+- **xyfill** Array|int: scale to smallest size to completely fill the box.
 - **reduce** float: how much to scale image
 - **xsize** int: new width
 - **ysize** int: new height
 - **width** int: synonym for xsize
 - **height** int: synonym for ysize
-- **xscale** float: how much to scale x dimenstion
-- **yscale** float: how much to scale y dimenstion
+- **xscale** float: how much to scale x dimension
+- **yscale** float: how much to scale y dimension
 - **pixels** int: maximum number of pixels
 - **verbose** Boolean: print debug information
 - **nomix** Boolean: use discrete sampling
@@ -197,3 +204,7 @@ pampipe
 ```
 
 [http://netpbm.sourceforge.net/doc/pamscale.html](http://netpbm.sourceforge.net/doc/pamscale.html)
+
+## Test
+To test the package, you need to have *netpbm* installed, because integration tests will perform
+transforms and compare them against expected results. To run tests, simply type `npm test`.
