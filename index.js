@@ -4,6 +4,8 @@ const pamflip = require('./lib/pamflip');
 const jpegtopnm = require('./lib/jpegtopnm');
 const pnmtopng = require('./lib/pnmtopng');
 const pnmtojpeg = require('./lib/pnmtojpeg');
+const pamscale = require('./lib/pamscale');
+
 const cp = require('child_process');
 
 class Pampipe {
@@ -27,6 +29,11 @@ class Pampipe {
     }
     pnmtojpeg(options) {
         const command = pnmtojpeg(options);
+        this.commands.push(command);
+        return this;
+    }
+    pamscale(options) {
+        const command = pamscale(options);
         this.commands.push(command);
         return this;
     }
@@ -55,4 +62,5 @@ module.exports = {
     jpegtopnm,
     pnmtopng,
     pnmtojpeg,
+    pamscale,
 };
