@@ -208,3 +208,13 @@ pampipe
 ## Test
 To test the package, you need to have *netpbm* installed, because integration tests will perform
 transforms and compare them against expected results. To run tests, simply type `npm test`.
+
+## Benchmark
+There is a benchmark which compares performance of *Netpbm* against [*vips*](http://www.vips.ecs.soton.ac.uk/index.php?title=Libvips),
+which is executed via [sharp](https://www.npmjs.com/package/sharp) npm module.
+We have not included the sharp dependency, so to run the benchmark you need to do
+`npm i sharp` first (you will need *libvips* on your machine). Then, type `npm run bench` to compare
+the two.
+
+We found that *libvips* is about 250% faster when resizing a jpeg to 450px wide
+and rotating it 90 degrees.
